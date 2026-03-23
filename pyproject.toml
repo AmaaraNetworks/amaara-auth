@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "amaara-auth"
+version = "0.1.0"
+description = "Google OAuth middleware for AmaaraNetworks FastAPI agents"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "itsdangerous>=2.2",
+    "google-auth>=2.36",
+    "google-auth-oauthlib>=1.2",
+    "pydantic-settings>=2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "httpx", "pytest-asyncio"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/amaara_auth"]
