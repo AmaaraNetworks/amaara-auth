@@ -45,6 +45,22 @@ def setup_auth(
 
         create_login_route(app, settings)
 
+    # Cross-agent user tracking middleware.
+    if settings.tracking_service_name:
+        from amaara_auth.middleware import UserTrackingMiddleware
+
+        app.add_middleware(
+            UserTrackingMiddleware,
+            service_name=settings.tracking_service_name,
+            gcp_project=settings.tracking_gcp_project,
+            auth_prefix=settings.auth_prefix,
+        )
+        logger.info(
+            "User tracking enabled for service: %s (project: %s)",
+            settings.tracking_service_name,
+            settings.tracking_gcp_project,
+        )
+
 
 __all__ = [
     "setup_auth",

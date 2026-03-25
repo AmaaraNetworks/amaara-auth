@@ -22,3 +22,8 @@ class AmaaraAuthSettings(BaseSettings):
     app_name: str = "Amaara Networks"
     login_page_enabled: bool = True
     cookie_prefix: str = "amaara"  # yields amaara_session, amaara_oauth_state
+
+    # Cross-agent user tracking — set tracking_service_name to enable.
+    # When set, authenticated requests are recorded in GAMA's Firestore.
+    tracking_service_name: str = ""  # e.g. "procure-enricher", "presales-agent"
+    tracking_gcp_project: str = "gama-490906"  # GAMA Firestore project
